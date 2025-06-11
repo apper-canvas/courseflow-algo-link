@@ -2,30 +2,68 @@
   "notesData": [
     {
       "id": "1",
-      "videoId": "course-1-lesson-1",
-      "timestamp": 45.5,
-      "title": "Key Concept",
-      "content": "Important point about React hooks - they must be called at the top level of components.",
+      "videoId": "intro-to-react",
+      "courseId": "react-fundamentals",
+      "courseName": "React Fundamentals",
+      "lessonId": "lesson-1",
+      "lessonName": "Introduction to React",
+      "timestamp": 120,
+      "title": "React Components",
+      "content": "React components are the building blocks of React applications. They let you split the UI into independent, reusable pieces.",
       "createdAt": "2024-01-15T10:30:00Z",
       "updatedAt": "2024-01-15T10:30:00Z"
     },
     {
       "id": "2",
-      "videoId": "course-1-lesson-1", 
-      "timestamp": 120.8,
-      "title": "Code Example",
-      "content": "useState example shown here - remember to import from 'react'",
-      "createdAt": "2024-01-15T10:35:00Z",
-      "updatedAt": "2024-01-15T10:35:00Z"
+      "videoId": "intro-to-react",
+      "courseId": "react-fundamentals",
+      "courseName": "React Fundamentals",
+      "lessonId": "lesson-1",
+      "lessonName": "Introduction to React",
+      "timestamp": 245,
+      "title": "JSX Syntax",
+      "content": "JSX is a syntax extension for JavaScript that looks similar to HTML. It's used to describe what the UI should look like.",
+      "createdAt": "2024-01-15T11:15:00Z",
+      "updatedAt": "2024-01-15T11:15:00Z"
     },
     {
       "id": "3",
-      "videoId": "course-1-lesson-2",
-      "timestamp": 67.2,
-      "title": "Best Practice", 
-      "content": "Always use useEffect cleanup functions to prevent memory leaks",
-      "createdAt": "2024-01-15T11:15:00Z",
-      "updatedAt": "2024-01-15T11:15:00Z"
+      "videoId": "state-management",
+      "courseId": "react-fundamentals",
+      "courseName": "React Fundamentals",
+      "lessonId": "lesson-3",
+      "lessonName": "State Management",
+      "timestamp": 67,
+      "title": "useState Hook",
+      "content": "useState is a Hook that lets you add state to functional components. It returns an array with the current state value and a function to update it.",
+      "createdAt": "2024-01-16T09:45:00Z",
+      "updatedAt": "2024-01-16T09:45:00Z"
+    },
+    {
+      "id": "4",
+      "videoId": "css-fundamentals",
+      "courseId": "web-design-basics",
+      "courseName": "Web Design Basics",
+      "lessonId": "lesson-2",
+      "lessonName": "CSS Fundamentals",
+      "timestamp": 156,
+      "title": "CSS Selectors",
+      "content": "CSS selectors are used to target HTML elements for styling. Common selectors include class, ID, and element selectors.",
+      "createdAt": "2024-01-17T14:20:00Z",
+      "updatedAt": "2024-01-17T14:20:00Z"
+    },
+    {
+      "id": "5",
+      "videoId": "variables-functions",
+      "courseId": "javascript-basics",
+      "courseName": "JavaScript Basics",
+      "lessonId": "lesson-1",
+      "lessonName": "Variables and Functions",
+      "timestamp": 89,
+      "title": "Variable Declaration",
+      "content": "In JavaScript, you can declare variables using var, let, or const. Each has different scoping rules and behaviors.",
+      "createdAt": "2024-01-18T16:30:00Z",
+      "updatedAt": "2024-01-18T16:30:00Z"
     }
   ]
 }

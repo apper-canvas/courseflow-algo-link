@@ -2,36 +2,45 @@ import HomePage from '@/components/pages/HomePage';
 import MyLearningPage from '@/components/pages/MyLearningPage';
 import ProgressPage from '@/components/pages/ProgressPage';
 import CertificatesPage from '@/components/pages/CertificatesPage';
+import NotesPage from '@/components/pages/NotesPage';
 
 export const routes = {
   home: {
     id: 'home',
-    label: 'Browse Courses',
+label: 'Browse Courses',
     path: '/',
     icon: 'Search',
-component: HomePage
+    component: HomePage
   },
   myLearning: {
     id: 'myLearning',
-    label: 'My Learning',
+label: 'My Learning',
     path: '/my-learning',
     icon: 'BookOpen',
-component: MyLearningPage
+    component: MyLearningPage
   },
   progress: {
     id: 'progress',
-    label: 'Progress',
+label: 'Progress',
     path: '/progress',
     icon: 'TrendingUp',
-component: ProgressPage
+    component: ProgressPage
   },
   certificates: {
     id: 'certificates',
-    label: 'Certificates',
+label: 'Certificates',
     path: '/certificates',
     icon: 'Award',
-component: CertificatesPage
+    component: CertificatesPage
+  },
+  notes: {
+    id: 'notes',
+    label: 'Notes',
+    path: '/notes',
+    icon: 'FileText',
+    component: NotesPage
   }
+};
 };
 
 export const routeArray = Object.values(routes);

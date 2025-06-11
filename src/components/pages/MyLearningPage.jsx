@@ -114,13 +114,24 @@ const MyLearningPage = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-heading font-bold text-gray-900 mb-2">
-          My Learning
-        </h1>
-        <p className="text-gray-600">
-          Continue your learning journey with {enrolledCourses.length} enrolled courses
-        </p>
+<div className="mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h1 className="text-3xl font-heading font-bold text-gray-900 mb-2">
+              My Learning
+            </h1>
+            <p className="text-gray-600">
+              Continue your learning journey with {enrolledCourses.length} enrolled courses
+            </p>
+          </div>
+          <Button
+            onClick={() => navigate('/notes')}
+            className="flex items-center gap-2 bg-primary text-white hover:bg-primary-dark"
+          >
+            <ApperIcon name="FileText" size={16} />
+            My Notes
+          </Button>
+        </div>
       </div>
 
       {/* Course Grid */}

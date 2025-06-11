@@ -6,7 +6,7 @@ import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import notesService from '@/services/api/notesService';
 
-const NotesPanel = ({ isOpen, onClose, videoId, currentTime, onSeekTo }) => {
+const NotesPanel = ({ isOpen, onClose, videoId, currentTime, onSeekTo, courseId, courseName, lessonId, lessonName }) => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingNote, setEditingNote] = useState(null);
@@ -14,7 +14,7 @@ const NotesPanel = ({ isOpen, onClose, videoId, currentTime, onSeekTo }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    if (isOpen && videoId) {
+if (isOpen && videoId) {
       loadNotes();
     }
   }, [isOpen, videoId]);
@@ -39,8 +39,12 @@ const NotesPanel = ({ isOpen, onClose, videoId, currentTime, onSeekTo }) => {
     }
 
     try {
-      const noteData = {
+const noteData = {
         videoId,
+        courseId,
+        courseName,
+        lessonId,
+        lessonName,
         timestamp: currentTime,
         title: newNote.title.trim() || 'Note',
         content: newNote.content.trim()
@@ -94,7 +98,7 @@ const NotesPanel = ({ isOpen, onClose, videoId, currentTime, onSeekTo }) => {
 
   return (
     <AnimatePresence>
-      {isOpen && (
+{isOpen && (
         <motion.div
           initial={{ x: '100%' }}
           animate={{ x: 0 }}
@@ -102,16 +106,19 @@ const NotesPanel = ({ isOpen, onClose, videoId, currentTime, onSeekTo }) => {
           transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           className="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 flex flex-col border-l border-gray-200"
         >
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Video Notes</h2>
+<div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Notes</h2>
+              {courseName && (
+                <p className="text-sm text-gray-600">{courseName} - {lessonName}</p>
+              )}
+            </div>
             <Button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg"
               icon={<ApperIcon name="X" size={20} className="text-gray-600" />}
             />
           </div>
-
           {/* Search */}
           <div className="p-4 border-b border-gray-200">
             <Input
@@ -195,12 +202,19 @@ const NotesPanel = ({ isOpen, onClose, videoId, currentTime, onSeekTo }) => {
 const NoteCard = ({ note, onEdit, onDelete, onSeek, formatTimestamp }) => (
   <>
     <div className="flex items-start justify-between mb-2">
-      <button
-        onClick={onSeek}
-        className="text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer"
-      >
-        {formatTimestamp(note.timestamp)}
-      </button>
+      <div className="flex items-center gap-2">
+        <button
+          onClick={onSeek}
+          className="text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer"
+        >
+          {formatTimestamp(note.timestamp)}
+        </button>
+        {note.courseName && (
+          <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+            {note.courseName}
+          </span>
+        )}
+      </div>
       <div className="flex space-x-1">
         <Button
           onClick={onEdit}

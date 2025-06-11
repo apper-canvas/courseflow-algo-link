@@ -5,7 +5,16 @@ import ProgressBar from '@/components/molecules/ProgressBar';
 import Button from '@/components/atoms/Button';
 import NotesPanel from '@/components/organisms/NotesPanel';
 
-const VideoPlayerComponent = ({ videoUrl, onProgress, onComplete, initialProgress = 0 }) => {
+const VideoPlayerComponent = ({ 
+  videoUrl, 
+  onProgress, 
+  onComplete, 
+  initialProgress = 0,
+  courseId,
+  courseName,
+  lessonId,
+  lessonName
+}) => {
 const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -13,7 +22,7 @@ const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const [showNotesPanel, setShowNotesPanel] = useState(false);
+const [showNotesPanel, setShowNotesPanel] = useState(false);
   const videoRef = useRef(null);
   const progressRef = useRef(null);
   const controlsTimeoutRef = useRef(null);
@@ -164,7 +173,7 @@ const handleMouseMove = () => {
   };
   return (
     <div className="flex">
-      <div 
+<div 
         className={`relative bg-black rounded-lg overflow-hidden group transition-all duration-300 ${showNotesPanel ? 'mr-4' : ''}`}
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => { if (isPlaying) setShowControls(false); }}
@@ -241,7 +250,7 @@ const handleMouseMove = () => {
                   </div>
 
                   <div className="flex items-center space-x-2">
-                    <Button
+<Button
                       onClick={() => setShowNotesPanel(!showNotesPanel)}
                       className={`text-white hover:text-primary p-0 ${showNotesPanel ? 'text-primary' : ''}`}
                       aria-label="Toggle notes panel"
@@ -261,17 +270,21 @@ const handleMouseMove = () => {
         </AnimatePresence>
       </div>
       
-      <NotesPanel
+<NotesPanel
         isOpen={showNotesPanel}
         onClose={() => setShowNotesPanel(false)}
         videoId={videoUrl}
+        courseId={courseId}
+        courseName={courseName}
+        lessonId={lessonId}
+        lessonName={lessonName}
         currentTime={currentTime}
         onSeekTo={(timestamp) => {
           if (videoRef.current) {
             videoRef.current.currentTime = timestamp;
             setCurrentTime(timestamp);
           }
-}}
+        }}
       />
     </div>
   );

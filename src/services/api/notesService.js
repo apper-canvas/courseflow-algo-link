@@ -1,4 +1,4 @@
-import { notesData } from '../mockData/notes.json';
+import { notesData } from '@/mockData/notes.json';
 
 // Mock delay to simulate API call
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -8,7 +8,12 @@ class NotesService {
     this.notes = [...notesData];
   }
 
-  async getAllByVideoId(videoId) {
+async getAll() {
+    await delay(300);
+    return [...this.notes].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
+
+async getAllByVideoId(videoId) {
     await delay(300);
     return this.notes
       .filter(note => note.videoId === videoId)
