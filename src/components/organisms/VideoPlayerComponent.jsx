@@ -153,16 +153,15 @@ const toggleFullscreen = () => {
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  const handleMouseMove = () => {
+const handleMouseMove = () => {
     setShowControls(true);
     if (isPlaying) {
       clearTimeout(controlsTimeoutRef.current);
       controlsTimeoutRef.current = setTimeout(() => {
         setShowControls(false);
       }, 3000);
-}
+    }
   };
-
   return (
     <div className="flex">
       <div 
@@ -272,9 +271,10 @@ const toggleFullscreen = () => {
             videoRef.current.currentTime = timestamp;
             setCurrentTime(timestamp);
           }
-        }}
+}}
       />
     </div>
-}
+  );
+};
 
 export default VideoPlayerComponent;
