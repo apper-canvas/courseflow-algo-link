@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Layout from './Layout';
-import Home from './pages/Home';
-import CourseDetail from './pages/CourseDetail';
-import Learning from './pages/Learning';
-import MyLearning from './pages/MyLearning';
-import Progress from './pages/Progress';
-import Certificates from './pages/Certificates';
-import NotFound from './pages/NotFound';
+import HomePage from '@/components/pages/HomePage';
+import CourseDetailPage from '@/components/pages/CourseDetailPage';
+import LearningPage from '@/components/pages/LearningPage';
+import MyLearningPage from '@/components/pages/MyLearningPage';
+import ProgressPage from '@/components/pages/ProgressPage';
+import CertificatesPage from '@/components/pages/CertificatesPage';
+import NotFoundPage from '@/components/pages/NotFoundPage';
 
 function App() {
   return (
@@ -15,14 +15,14 @@ function App() {
       <div className="min-h-screen bg-background">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/courses/:id" element={<CourseDetail />} />
-            <Route path="/learning/:courseId" element={<Learning />} />
-            <Route path="/learning/:courseId/:lessonId" element={<Learning />} />
-            <Route path="/my-learning" element={<MyLearning />} />
-            <Route path="/progress" element={<Progress />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="*" element={<NotFound />} />
+<Route index element={<HomePage />} />
+            <Route path="/courses/:id" element={<CourseDetailPage />} />
+            <Route path="/learning/:courseId" element={<LearningPage />} />
+            <Route path="/learning/:courseId/:lessonId" element={<LearningPage />} />
+            <Route path="/my-learning" element={<MyLearningPage />} />
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/certificates" element={<CertificatesPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
         <ToastContainer

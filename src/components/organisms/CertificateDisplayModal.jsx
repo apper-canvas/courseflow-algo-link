@@ -1,7 +1,9 @@
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
 
-function CertificateModal({ isOpen, onClose, certificate }) {
+const CertificateDisplayModal = ({ isOpen, onClose, certificate }) => {
   if (!certificate) return null;
 
   const handleShare = () => {
@@ -16,12 +18,14 @@ function CertificateModal({ isOpen, onClose, certificate }) {
       navigator.clipboard.writeText(
         `I've completed the ${certificate.courseTitle} course! ${window.location.href}`
       );
+      alert('Link copied to clipboard!');
     }
   };
 
   const handleDownload = () => {
     // In a real app, this would generate a PDF
     console.log('Download certificate:', certificate);
+    alert('Certificate download initiated (simulated)');
   };
 
   return (
@@ -42,12 +46,11 @@ function CertificateModal({ isOpen, onClose, certificate }) {
               className="bg-white rounded-lg shadow-xl max-w-2xl w-full p-8 relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <button
+              <Button
                 onClick={onClose}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600"
-              >
-                <ApperIcon name="X" size={20} />
-              </button>
+                icon={<ApperIcon name="X" size={20} />}
+              />
 
               {/* Certificate Design */}
               <div className="text-center">
@@ -94,24 +97,20 @@ function CertificateModal({ isOpen, onClose, certificate }) {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <Button
                     onClick={handleDownload}
-                    className="flex items-center justify-center space-x-2 px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                    className="flex-1 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90"
+                    icon={<ApperIcon name="Download" size={18} />}
                   >
-                    <ApperIcon name="Download" size={18} />
-                    <span>Download Certificate</span>
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    Download Certificate
+                  </Button>
+                  <Button
                     onClick={handleShare}
-                    className="flex items-center justify-center space-x-2 px-6 py-3 bg-secondary text-white rounded-lg font-medium hover:bg-secondary/90 transition-colors"
+                    className="flex-1 py-3 bg-secondary text-white rounded-lg font-medium hover:bg-secondary/90"
+                    icon={<ApperIcon name="Share2" size={18} />}
                   >
-                    <ApperIcon name="Share2" size={18} />
-                    <span>Share Achievement</span>
-                  </motion.button>
+                    Share Achievement
+                  </Button>
                 </div>
               </div>
             </motion.div>
@@ -122,4 +121,4 @@ function CertificateModal({ isOpen, onClose, certificate }) {
   );
 }
 
-export default CertificateModal;
+export default CertificateDisplayModal;

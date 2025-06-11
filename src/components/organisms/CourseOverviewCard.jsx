@@ -1,22 +1,10 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import CourseMetaInfo from '@/components/molecules/CourseMetaInfo';
+import IconText from '@/components/molecules/IconText';
 
-const difficultyColors = {
-  beginner: 'bg-success text-white',
-  intermediate: 'bg-warning text-white',
-  advanced: 'bg-error text-white'
-};
-
-function CourseCard({ course, onClick }) {
-  const formatDuration = (minutes) => {
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
-    if (hours > 0) {
-      return `${hours}h ${mins}m`;
-    }
-    return `${mins}m`;
-  };
-
+const CourseOverviewCard = ({ course, onClick }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02, y: -4 }}
@@ -31,21 +19,13 @@ function CourseCard({ course, onClick }) {
           className="w-full h-48 object-cover"
         />
         <div className="absolute top-3 right-3">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium ${difficultyColors[course.difficulty]}`}>
-            {course.difficulty.charAt(0).toUpperCase() + course.difficulty.slice(1)}
-          </span>
+          <CourseMetaInfo category={course.category} difficulty={course.difficulty} />
         </div>
       </div>
       
       <div className="p-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded">
-            {course.category.charAt(0).toUpperCase() + course.category.slice(1)}
-          </span>
-          <div className="flex items-center text-gray-500 text-sm">
-            <ApperIcon name="Clock" size={14} className="mr-1" />
-            {formatDuration(course.duration)}
-          </div>
+          <CourseMetaInfo category={course.category} difficulty={course.difficulty} duration={course.duration} />
         </div>
         
         <h3 className="text-lg font-heading font-semibold text-gray-900 mb-2 line-clamp-2">
@@ -64,14 +44,15 @@ function CourseCard({ course, onClick }) {
             <span className="text-sm font-medium text-gray-700">{course.instructor}</span>
           </div>
           
-          <div className="flex items-center text-gray-500 text-sm">
-            <ApperIcon name="BookOpen" size={14} className="mr-1" />
-            {course.modules?.length || 0} modules
-          </div>
+          <IconText 
+            iconName="BookOpen" 
+            text={`${course.modules?.length || 0} modules`} 
+            className="text-gray-500 text-sm" 
+          />
         </div>
       </div>
     </motion.div>
   );
 }
 
-export default CourseCard;
+export default CourseOverviewCard;

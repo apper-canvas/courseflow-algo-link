@@ -1,4 +1,6 @@
-function SkeletonLoader({ count = 1 }) {
+import React from 'react';
+
+const ContentLoader = ({ count = 1 }) => {
   return (
     <div className="space-y-6">
       {[...Array(count)].map((_, i) => (
@@ -28,4 +30,4 @@ function SkeletonLoader({ count = 1 }) {
   );
 }
 
-export default SkeletonLoader;
+export default ContentLoader;

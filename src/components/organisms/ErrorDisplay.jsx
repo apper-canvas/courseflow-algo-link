@@ -1,7 +1,9 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
 
-function ErrorState({ message, onRetry }) {
+const ErrorDisplay = ({ message, onRetry }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -13,16 +15,11 @@ function ErrorState({ message, onRetry }) {
       </div>
       <h3 className="text-lg font-semibold text-gray-900 mb-2">Something went wrong</h3>
       <p className="text-gray-600 mb-6 max-w-md mx-auto">{message}</p>
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onRetry}
-        className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
-      >
+      <Button onClick={onRetry} className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90">
         Try Again
-      </motion.button>
+      </Button>
     </motion.div>
   );
 }
 
-export default ErrorState;
+export default ErrorDisplay;

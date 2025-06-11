@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './ApperIcon';
-import { routeArray } from '../config/routes';
+import ApperIcon from '@/components/ApperIcon';
+import Input from '@/components/atoms/Input';
+import { routeArray } from '@/config/routes';
+import Button from '@/components/atoms/Button';
 
-function Header() {
+const AppHeader = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
@@ -35,12 +37,12 @@ function Header() {
             <form onSubmit={handleSearch} className="w-full">
               <div className="relative">
                 <ApperIcon name="Search" size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input
+                <Input
                   type="text"
                   placeholder="Search courses..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200"
+                  className="pl-10 pr-4"
                 />
               </div>
             </form>
@@ -79,12 +81,11 @@ function Header() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          <Button
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <ApperIcon name={isMobileMenuOpen ? 'X' : 'Menu'} size={20} />
-          </button>
+            icon={<ApperIcon name={isMobileMenuOpen ? 'X' : 'Menu'} size={20} />}
+          />
         </div>
 
         {/* Mobile Search */}
@@ -92,12 +93,12 @@ function Header() {
           <form onSubmit={handleSearch} className="w-full">
             <div className="relative">
               <ApperIcon name="Search" size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
+              <Input
                 type="text"
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200"
+                className="pl-10 pr-4"
               />
             </div>
           </form>
@@ -148,4 +149,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default AppHeader;

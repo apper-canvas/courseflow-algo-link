@@ -1,7 +1,9 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
 
-function EmptyState({ title, description, actionLabel, onAction }) {
+const EmptyDisplay = ({ title, description, actionLabel, onAction }) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -18,17 +20,12 @@ function EmptyState({ title, description, actionLabel, onAction }) {
       <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
       <p className="text-gray-600 mb-6 max-w-md mx-auto">{description}</p>
       {actionLabel && onAction && (
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onAction}
-          className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
-        >
+        <Button onClick={onAction} className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90">
           {actionLabel}
-        </motion.button>
+        </Button>
       )}
     </motion.div>
   );
 }
 
-export default EmptyState;
+export default EmptyDisplay;

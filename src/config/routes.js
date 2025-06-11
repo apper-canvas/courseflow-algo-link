@@ -1,7 +1,7 @@
-import Home from '../pages/Home';
-import MyLearning from '../pages/MyLearning';
-import Progress from '../pages/Progress';
-import Certificates from '../pages/Certificates';
+import HomePage from '@/components/pages/HomePage';
+import MyLearningPage from '@/components/pages/MyLearningPage';
+import ProgressPage from '@/components/pages/ProgressPage';
+import CertificatesPage from '@/components/pages/CertificatesPage';
 
 export const routes = {
   home: {
@@ -9,28 +9,28 @@ export const routes = {
     label: 'Browse Courses',
     path: '/',
     icon: 'Search',
-    component: Home
+component: HomePage
   },
   myLearning: {
     id: 'myLearning',
     label: 'My Learning',
     path: '/my-learning',
     icon: 'BookOpen',
-    component: MyLearning
+component: MyLearningPage
   },
   progress: {
     id: 'progress',
     label: 'Progress',
     path: '/progress',
     icon: 'TrendingUp',
-    component: Progress
+component: ProgressPage
   },
   certificates: {
     id: 'certificates',
     label: 'Certificates',
     path: '/certificates',
     icon: 'Award',
-    component: Certificates
+component: CertificatesPage
   }
 };
 

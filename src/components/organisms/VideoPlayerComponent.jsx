@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import ProgressBar from '@/components/molecules/ProgressBar';
+import Button from '@/components/atoms/Button';
 
-function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) {
+const VideoPlayerComponent = ({ videoUrl, onProgress, onComplete, initialProgress = 0 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -12,6 +14,7 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
   const [showControls, setShowControls] = useState(true);
   const videoRef = useRef(null);
   const progressRef = useRef(null);
+  const controlsTimeoutRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -27,7 +30,7 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
         onProgress?.(progress);
         
         // Mark as complete when 90% watched
-        if (progress >= 90) {
+        if (progress >= 90 && current > 0) { // Add current > 0 check to prevent false positives on load
           onComplete?.();
         }
       }
@@ -41,23 +44,47 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
       }
     };
 
+    const handlePlayPause = () => setIsPlaying(!video.paused);
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+      onComplete?.();
+    };
+
     video.addEventListener('timeupdate', handleTimeUpdate);
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('play', handlePlayPause);
+    video.addEventListener('pause', handlePlayPause);
+    video.addEventListener('ended', handleEnded);
+
 
     return () => {
       video.removeEventListener('timeupdate', handleTimeUpdate);
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('play', handlePlayPause);
+      video.removeEventListener('pause', handlePlayPause);
+      video.removeEventListener('ended', handleEnded);
     };
   }, [onProgress, onComplete, initialProgress]);
+
+  // Hide controls after a delay
+  useEffect(() => {
+    if (isPlaying) {
+      clearTimeout(controlsTimeoutRef.current);
+      controlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 3000); // Hide after 3 seconds of inactivity
+    }
+    return () => clearTimeout(controlsTimeoutRef.current);
+  }, [isPlaying, showControls]);
+
 
   const togglePlay = () => {
     const video = videoRef.current;
     if (video.paused) {
       video.play();
-      setIsPlaying(true);
     } else {
       video.pause();
-      setIsPlaying(false);
     }
   };
 
@@ -85,17 +112,30 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
   };
 
   const toggleFullscreen = () => {
-    const video = videoRef.current;
+    const videoContainer = videoRef.current.parentElement; // Assuming parent is the container
     if (!document.fullscreenElement) {
-      video.requestFullscreen();
+      if (videoContainer.requestFullscreen) {
+        videoContainer.requestFullscreen();
+      } else if (videoContainer.webkitRequestFullscreen) { /* Safari */
+        videoContainer.webkitRequestFullscreen();
+      } else if (videoContainer.msRequestFullscreen) { /* IE11 */
+        videoContainer.msRequestFullscreen();
+      }
       setIsFullscreen(true);
     } else {
-      document.exitFullscreen();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+      }
       setIsFullscreen(false);
     }
   };
 
   const formatTime = (time) => {
+    if (isNaN(time)) return '0:00';
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
@@ -103,17 +143,29 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+  const handleMouseMove = () => {
+    setShowControls(true);
+    if (isPlaying) {
+      clearTimeout(controlsTimeoutRef.current);
+      controlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 3000);
+    }
+  };
+
   return (
     <div 
       className="relative bg-black rounded-lg overflow-hidden group"
       onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
+      onMouseLeave={() => { if (isPlaying) setShowControls(false); }}
+      onMouseMove={handleMouseMove}
     >
       <video
         ref={videoRef}
         src={videoUrl}
         className="w-full h-full"
         onClick={togglePlay}
+        onDoubleClick={toggleFullscreen}
       />
       
       <AnimatePresence>
@@ -126,18 +178,12 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
           >
             {/* Play/Pause Button */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-auto">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              <Button
                 onClick={togglePlay}
-                className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-              >
-                <ApperIcon 
-                  name={isPlaying ? 'Pause' : 'Play'} 
-                  size={24} 
-                  className="text-white ml-1" 
-                />
-              </motion.button>
+                className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"
+                aria-label={isPlaying ? 'Pause' : 'Play'}
+                icon={<ApperIcon name={isPlaying ? 'Pause' : 'Play'} size={24} className="text-white ml-1" />}
+              />
             </div>
 
             {/* Controls Bar */}
@@ -148,29 +194,26 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
                 className="w-full h-2 bg-white/20 rounded-full cursor-pointer mb-4 overflow-hidden"
                 onClick={handleProgressClick}
               >
-                <div
-                  className="h-full bg-primary transition-all duration-100"
-                  style={{ width: `${progressPercentage}%` }}
-                />
+                <ProgressBar progress={progressPercentage} barClassName="bg-primary" />
               </div>
 
               {/* Controls */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <button
+                  <Button
                     onClick={togglePlay}
-                    className="text-white hover:text-primary transition-colors"
-                  >
-                    <ApperIcon name={isPlaying ? 'Pause' : 'Play'} size={20} />
-                  </button>
+                    className="text-white hover:text-primary p-0"
+                    aria-label={isPlaying ? 'Pause video' : 'Play video'}
+                    icon={<ApperIcon name={isPlaying ? 'Pause' : 'Play'} size={20} />}
+                  />
                   
                   <div className="flex items-center space-x-2">
-                    <button
+                    <Button
                       onClick={toggleMute}
-                      className="text-white hover:text-primary transition-colors"
-                    >
-                      <ApperIcon name={isMuted ? 'VolumeX' : 'Volume2'} size={20} />
-                    </button>
+                      className="text-white hover:text-primary p-0"
+                      aria-label={isMuted ? 'Unmute' : 'Mute'}
+                      icon={<ApperIcon name={isMuted ? 'VolumeX' : 'Volume2'} size={20} />}
+                    />
                     <input
                       type="range"
                       min="0"
@@ -187,12 +230,12 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
                   </span>
                 </div>
 
-                <button
+                <Button
                   onClick={toggleFullscreen}
-                  className="text-white hover:text-primary transition-colors"
-                >
-                  <ApperIcon name={isFullscreen ? 'Minimize' : 'Maximize'} size={20} />
-                </button>
+                  className="text-white hover:text-primary p-0"
+                  aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                  icon={<ApperIcon name={isFullscreen ? 'Minimize' : 'Maximize'} size={20} />}
+                />
               </div>
             </div>
           </motion.div>
@@ -202,4 +245,4 @@ function VideoPlayer({ videoUrl, onProgress, onComplete, initialProgress = 0 }) 
   );
 }
 
-export default VideoPlayer;
+export default VideoPlayerComponent;
