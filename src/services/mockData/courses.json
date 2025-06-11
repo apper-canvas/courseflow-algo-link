@@ -14,11 +14,26 @@
         "title": "Getting Started with JavaScript",
         "lessons": [
           {
-            "id": "lesson-1",
+"id": "lesson-1",
             "title": "Introduction to JavaScript",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
             "duration": 45,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Understand what JavaScript is and its role in web development",
+                "Learn about the history and evolution of JavaScript",
+                "Identify where JavaScript can be used (frontend, backend, mobile)",
+                "Set up a basic development environment for JavaScript"
+              ],
+              "keyPoints": [
+                "JavaScript is a versatile programming language primarily used for web development",
+                "It runs in browsers and can make web pages interactive and dynamic",
+                "Modern JavaScript (ES6+) includes many powerful features for efficient coding",
+                "JavaScript is essential for both frontend and backend development"
+              ],
+              "detailedContent": "JavaScript is one of the most important programming languages in modern web development. Originally created in 1995 by Brendan Eich at Netscape, JavaScript has evolved from a simple scripting language to a powerful, full-featured programming language that powers everything from simple websites to complex web applications, mobile apps, and even server-side applications.\n\nAt its core, JavaScript is a high-level, interpreted programming language that follows the ECMAScript specification. What makes JavaScript unique is its ability to run directly in web browsers without requiring compilation, making it the de facto language for client-side web development.\n\nJavaScript enables you to add interactivity to web pages - from simple button clicks and form validations to complex animations and real-time data updates. When combined with HTML (structure) and CSS (styling), JavaScript provides the behavior layer that brings web pages to life.\n\nModern JavaScript includes numerous features that make development more efficient and code more maintainable. ES6 (ECMAScript 2015) and later versions introduced arrow functions, template literals, destructuring, modules, and many other features that have revolutionized how we write JavaScript code.\n\nToday, JavaScript's ecosystem is vast, with frameworks and libraries like React, Vue.js, Angular for frontend development, and Node.js enabling JavaScript to run on servers. This versatility means that learning JavaScript opens doors to full-stack web development, mobile app development with React Native, and even desktop applications with Electron."
+            },
             "quiz": {
               "questions": [
                 {
@@ -46,11 +61,26 @@
             }
           },
           {
-            "id": "lesson-2",
+"id": "lesson-2",
             "title": "Variables and Data Types",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
             "duration": 60,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Learn how to declare and use variables in JavaScript",
+                "Understand different data types: strings, numbers, booleans, objects, arrays",
+                "Master variable scope and hoisting concepts",
+                "Practice working with different variable declaration keywords (var, let, const)"
+              ],
+              "keyPoints": [
+                "Variables are containers that store data values",
+                "JavaScript has dynamic typing - variables can hold different types of data",
+                "Use 'let' and 'const' for modern variable declarations instead of 'var'",
+                "Understanding data types is fundamental for effective programming"
+              ],
+              "detailedContent": "Variables are one of the fundamental building blocks of any programming language, and JavaScript is no exception. A variable is essentially a named container that stores data values, allowing you to reference and manipulate that data throughout your program.\n\nIn JavaScript, you can declare variables using three keywords: 'var', 'let', and 'const'. While 'var' was the original way to declare variables, modern JavaScript development favors 'let' and 'const' due to their improved scoping behavior and additional safeguards against common programming errors.\n\nJavaScript is a dynamically typed language, which means you don't need to specify the type of data a variable will hold when you declare it. The JavaScript engine automatically determines the type based on the value assigned. The main primitive data types in JavaScript include:\n\n1. **String**: Represents text data, enclosed in quotes ('hello', \"world\", or `template literal`)\n2. **Number**: Represents both integers and floating-point numbers (42, 3.14, -7)\n3. **Boolean**: Represents true/false values\n4. **Undefined**: Represents a variable that has been declared but not assigned a value\n5. **Null**: Represents an intentional absence of value\n6. **Symbol**: Represents a unique identifier (ES6+)\n7. **BigInt**: Represents large integers beyond Number.MAX_SAFE_INTEGER\n\nBeyond primitive types, JavaScript also has object types including arrays, functions, and objects themselves. Understanding these data types and how to work with them effectively is crucial for writing robust JavaScript applications.\n\nVariable scope determines where in your code a variable can be accessed. 'let' and 'const' have block scope, meaning they're only accessible within the block (enclosed by curly braces) where they're declared, while 'var' has function scope, which can sometimes lead to unexpected behavior."
+            },
             "quiz": {
               "questions": [
                 {
@@ -74,11 +104,26 @@
         "title": "Functions and Control Flow",
         "lessons": [
           {
-            "id": "lesson-3",
+"id": "lesson-3",
             "title": "Functions in JavaScript",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
             "duration": 75,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Learn how to define and call functions in JavaScript",
+                "Understand function parameters and return values",
+                "Explore different ways to create functions (function declarations, expressions, arrow functions)",
+                "Master function scope and closure concepts"
+              ],
+              "keyPoints": [
+                "Functions are reusable blocks of code that perform specific tasks",
+                "Functions can accept parameters and return values",
+                "Arrow functions provide a concise syntax for writing functions",
+                "Functions have their own scope and can access variables from outer scopes"
+              ],
+              "detailedContent": "Functions are one of the most important concepts in JavaScript programming. They allow you to write reusable blocks of code that can be called multiple times throughout your program, promoting code organization, reusability, and maintainability.\n\nA function is essentially a named (or anonymous) block of code designed to perform a particular task. Functions can accept input through parameters, process that input, and optionally return a result. This makes them incredibly powerful tools for breaking down complex problems into smaller, manageable pieces.\n\nThere are several ways to create functions in JavaScript:\n\n1. **Function Declarations**: The traditional way using the 'function' keyword followed by a name\n   ```javascript\n   function greetUser(name) {\n     return `Hello, ${name}!`;\n   }\n   ```\n\n2. **Function Expressions**: Assigning a function to a variable\n   ```javascript\n   const greetUser = function(name) {\n     return `Hello, ${name}!`;\n   };\n   ```\n\n3. **Arrow Functions**: A more concise syntax introduced in ES6\n   ```javascript\n   const greetUser = (name) => {\n     return `Hello, ${name}!`;\n   };\n   ```\n\nFunctions create their own scope, meaning variables declared inside a function are not accessible from outside the function. However, functions can access variables from their outer (parent) scope, a concept known as closure. This powerful feature allows functions to 'remember' variables from the scope in which they were created, even after that scope has finished executing.\n\nParameters allow functions to accept input data, making them flexible and reusable. You can define default parameter values, use rest parameters to accept multiple arguments, and destructure objects or arrays directly in the parameter list.\n\nReturn statements allow functions to send data back to the code that called them. If no return statement is provided, the function returns 'undefined' by default."
+            },
             "quiz": {
               "questions": [
                 {
@@ -114,11 +159,26 @@
         "title": "Design Fundamentals",
         "lessons": [
           {
-            "id": "lesson-4",
+"id": "lesson-4",
             "title": "Introduction to UI/UX Design",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
             "duration": 50,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Understand the difference between UI (User Interface) and UX (User Experience) design",
+                "Learn the fundamental principles of good design",
+                "Explore the design thinking process and methodology",
+                "Identify common design patterns and when to use them"
+              ],
+              "keyPoints": [
+                "UI focuses on visual design and interface elements, UX focuses on overall user experience",
+                "Good design is both functional and aesthetically pleasing",
+                "User-centered design puts the user's needs and goals at the center of the design process",
+                "Consistency and usability are key principles of effective interface design"
+              ],
+              "detailedContent": "UI/UX design is a critical discipline that shapes how users interact with digital products and services. While often mentioned together, User Interface (UI) and User Experience (UX) design are distinct but complementary fields that work together to create meaningful and effective digital experiences.\n\n**User Interface (UI) Design** focuses on the visual and interactive elements of a product - the buttons, icons, typography, colors, spacing, and overall visual layout. UI designers are responsible for ensuring that interfaces are visually appealing, on-brand, and easy to navigate. They work with design systems, create style guides, and ensure visual consistency across all touchpoints.\n\n**User Experience (UX) Design** takes a broader view, focusing on the overall experience a user has when interacting with a product or service. UX designers conduct user research, create user personas, map user journeys, and design information architecture. They're concerned with how easy, efficient, and satisfying it is for users to accomplish their goals.\n\nThe design thinking process is a human-centered approach to innovation that provides a framework for solving complex problems. It typically involves five key phases:\n\n1. **Empathize**: Understanding users' needs, thoughts, emotions, and motivations\n2. **Define**: Clearly articulating the problem you're trying to solve\n3. **Ideate**: Brainstorming creative solutions to the defined problem\n4. **Prototype**: Building testable versions of your solutions\n5. **Test**: Gathering feedback and iterating on your designs\n\nKey design principles include hierarchy (organizing information in order of importance), contrast (making important elements stand out), repetition (creating consistency), alignment (creating visual connections), and proximity (grouping related elements together).\n\nEffective UI/UX design requires understanding your users, their context, and their goals. This involves conducting user research, creating user personas, and continuously testing and iterating on your designs based on real user feedback."
+            },
             "quiz": {
               "questions": [
                 {
@@ -136,11 +196,26 @@
             }
           },
           {
-            "id": "lesson-5",
+"id": "lesson-5",
             "title": "Color Theory and Typography",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
             "duration": 65,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Understand the color wheel and color relationships",
+                "Learn how colors affect mood, perception, and user behavior",
+                "Master typography fundamentals including font selection and hierarchy",
+                "Apply color and typography principles to create effective designs"
+              ],
+              "keyPoints": [
+                "Colors have psychological effects and cultural meanings",
+                "Complementary colors create strong contrast, analogous colors create harmony",
+                "Typography hierarchy guides users through content in order of importance",
+                "Accessibility considerations are crucial for both color and typography choices"
+              ],
+              "detailedContent": "Color theory and typography are fundamental elements of visual design that significantly impact how users perceive and interact with digital interfaces. Understanding these principles is essential for creating designs that are not only visually appealing but also functional and accessible.\n\n**Color Theory Fundamentals**\n\nColor theory is based on the color wheel, which organizes colors in a logical sequence. Primary colors (red, blue, yellow) cannot be created by mixing other colors. Secondary colors (green, orange, purple) are created by mixing primary colors. Tertiary colors are created by mixing primary and secondary colors.\n\nColor relationships include:\n- **Complementary**: Colors opposite each other on the color wheel (red/green, blue/orange) create high contrast and visual tension\n- **Analogous**: Colors next to each other on the wheel create harmony and are pleasing to the eye\n- **Triadic**: Three colors equally spaced on the wheel create vibrant, balanced color schemes\n- **Monochromatic**: Different shades, tints, and tones of a single color create sophisticated, cohesive designs\n\nColors have psychological and cultural associations. Red can signify energy, passion, or danger. Blue often represents trust, stability, and professionalism. Green is associated with nature, growth, and success. Understanding these associations helps designers make informed color choices that support the intended message and user experience.\n\n**Typography Fundamentals**\n\nTypography is the art and technique of arranging type to make written language legible, readable, and appealing. Good typography establishes visual hierarchy, guides the reader's eye, and enhances the overall design aesthetic.\n\nKey typography concepts include:\n- **Font vs. Typeface**: A typeface is the design (Arial, Helvetica), while a font is the specific implementation (Arial Bold 12pt)\n- **Serif vs. Sans-serif**: Serif fonts have decorative strokes and are traditionally used for body text in print, while sans-serif fonts are clean and modern\n- **Typography Hierarchy**: Using different font sizes, weights, and styles to create a clear information hierarchy\n- **Leading, Kerning, and Tracking**: Spacing adjustments that affect readability and visual appeal\n\nBoth color and typography choices must consider accessibility. Sufficient color contrast ratios ensure text is readable for users with visual impairments, while thoughtful font selection and sizing support users with dyslexia and other reading difficulties."
+            },
             "quiz": {
               "questions": [
                 {
@@ -176,11 +251,26 @@
         "title": "Marketing Fundamentals",
         "lessons": [
           {
-            "id": "lesson-6",
+"id": "lesson-6",
             "title": "Digital Marketing Overview",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
             "duration": 55,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Understand the digital marketing landscape and its key components",
+                "Learn about different digital marketing channels and their purposes",
+                "Explore how to create an integrated digital marketing strategy",
+                "Understand the importance of data-driven marketing decisions"
+              ],
+              "keyPoints": [
+                "Digital marketing encompasses all marketing efforts using digital channels",
+                "Integration across multiple channels creates a cohesive user experience",
+                "Data and analytics drive successful digital marketing campaigns",
+                "Customer journey mapping helps optimize touchpoints for maximum impact"
+              ],
+              "detailedContent": "Digital marketing represents a fundamental shift in how businesses connect with their audiences. Unlike traditional marketing, digital marketing leverages internet-connected technologies to reach customers where they spend much of their time: online. This comprehensive approach encompasses all marketing efforts that use electronic devices or the internet to connect with current and prospective customers.\n\n**Core Digital Marketing Channels**\n\nThe digital marketing ecosystem includes numerous interconnected channels, each serving specific purposes in the customer journey:\n\n**Search Engine Optimization (SEO)** focuses on improving website visibility in organic search results. This involves optimizing content, technical website elements, and building authority through quality backlinks.\n\n**Pay-Per-Click (PPC) Advertising** provides immediate visibility through paid search ads, display advertising, and social media ads. Platforms like Google Ads and Facebook Ads allow precise targeting and real-time optimization.\n\n**Content Marketing** involves creating and distributing valuable, relevant content to attract and engage target audiences. This includes blog posts, videos, podcasts, infographics, and interactive content.\n\n**Social Media Marketing** leverages platforms like Facebook, Instagram, LinkedIn, and Twitter to build brand awareness, engage with customers, and drive website traffic.\n\n**Email Marketing** remains one of the highest ROI digital marketing channels, enabling personalized communication and nurturing leads through automated sequences.\n\n**Influencer Marketing** partners with individuals who have established credibility and audiences in specific niches to promote products or services.\n\n**Strategic Integration**\n\nSuccessful digital marketing requires integrating these channels into a cohesive strategy that guides customers through their journey from awareness to conversion and advocacy. This involves understanding your target audience, mapping their digital behaviors, and creating touchpoints that provide value at each stage.\n\nData and analytics are the backbone of effective digital marketing. Tools like Google Analytics, social media insights, and marketing automation platforms provide detailed information about customer behavior, campaign performance, and ROI. This data enables marketers to make informed decisions, optimize campaigns in real-time, and demonstrate the business impact of their efforts.\n\nThe customer journey in digital marketing is rarely linear. Customers may discover your brand through social media, research on your website, compare options via search engines, and finally convert through email marketing. Understanding and optimizing this multi-touchpoint journey is essential for maximizing marketing effectiveness."
+            },
             "quiz": {
               "questions": [
                 {
@@ -216,11 +306,26 @@
         "title": "Python Basics for Data Science",
         "lessons": [
           {
-            "id": "lesson-7",
+"id": "lesson-7",
             "title": "Python Environment Setup",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
             "duration": 40,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Learn how to install Python and set up a development environment",
+                "Understand the importance of virtual environments for project isolation",
+                "Get familiar with package management using pip",
+                "Explore popular IDEs and text editors for Python development"
+              ],
+              "keyPoints": [
+                "Python installation varies by operating system but is straightforward",
+                "Virtual environments prevent package conflicts between projects",
+                "Pip is Python's standard package installer for third-party libraries",
+                "Jupyter Notebooks are essential for data science experimentation and analysis"
+              ],
+              "detailedContent": "Setting up a proper Python development environment is crucial for effective data science work. A well-configured environment ensures reproducibility, prevents conflicts between different projects, and provides access to the powerful libraries that make Python ideal for data analysis and machine learning.\n\n**Installing Python**\n\nPython can be installed in several ways depending on your operating system and needs. For data science work, we recommend using Anaconda, a Python distribution that includes Python itself plus many pre-installed scientific computing packages.\n\nAnaconda provides several advantages for data scientists:\n- Includes popular data science libraries like NumPy, Pandas, and Matplotlib out of the box\n- Comes with Jupyter Notebook for interactive development\n- Includes Conda package manager for easy package installation\n- Provides graphical tools for environment management\n\nAlternatively, you can install Python directly from python.org and use pip to install packages as needed. This approach gives you more control but requires more manual setup.\n\n**Virtual Environments**\n\nVirtual environments are isolated Python environments that allow you to install packages for specific projects without affecting your system Python installation. This is crucial because different projects may require different versions of the same library.\n\nWith Anaconda, you can create environments using conda:\n```bash\nconda create --name myproject python=3.9\nconda activate myproject\n```\n\nWith standard Python, you can use venv:\n```bash\npython -m venv myproject\nsource myproject/bin/activate  # On Windows: myproject\\Scripts\\activate\n```\n\n**Package Management**\n\nPip is Python's standard package installer, allowing you to install libraries from the Python Package Index (PyPI). For data science, you'll commonly install packages like:\n- pandas: Data manipulation and analysis\n- numpy: Numerical computing\n- matplotlib: Data visualization\n- scikit-learn: Machine learning\n- jupyter: Interactive notebooks\n\n**Development Tools**\n\nJupyter Notebooks are particularly important for data science as they allow you to write code, view results, and document your analysis in a single interactive environment. Other popular development tools include:\n- VSCode: Versatile editor with excellent Python support\n- PyCharm: Full-featured Python IDE\n- Spyder: Scientific Python IDE included with Anaconda\n\nA proper setup also includes version control with Git, which is essential for tracking changes in your data science projects and collaborating with others."
+            },
             "quiz": {
               "questions": [
                 {
@@ -238,11 +343,26 @@
             }
           },
           {
-            "id": "lesson-8",
+"id": "lesson-8",
             "title": "Introduction to NumPy",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
             "duration": 70,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Understand what NumPy is and why it's essential for data science",
+                "Learn how to create and manipulate NumPy arrays",
+                "Explore NumPy's mathematical functions and operations",
+                "Practice array indexing, slicing, and broadcasting concepts"
+              ],
+              "keyPoints": [
+                "NumPy provides efficient numerical computing capabilities for Python",
+                "NumPy arrays are faster and more memory-efficient than Python lists",
+                "Broadcasting allows operations between arrays of different shapes",
+                "NumPy forms the foundation for most Python data science libraries"
+              ],
+              "detailedContent": "NumPy (Numerical Python) is the foundational package for scientific computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays efficiently. Understanding NumPy is essential for data science because virtually every other scientific Python library builds upon NumPy's array structure.\n\n**Why NumPy?**\n\nPython lists are versatile but not optimized for numerical computations. NumPy arrays offer several advantages:\n- **Performance**: NumPy operations are implemented in C, making them much faster than pure Python\n- **Memory Efficiency**: NumPy arrays use less memory than Python lists\n- **Vectorization**: Perform operations on entire arrays without writing loops\n- **Broadcasting**: Intelligent handling of operations between arrays of different shapes\n\n**NumPy Arrays (ndarray)**\n\nThe core of NumPy is the ndarray (n-dimensional array) object. Unlike Python lists, NumPy arrays:\n- Store elements of the same data type\n- Have a fixed size upon creation\n- Support element-wise operations\n- Can be multi-dimensional\n\nCreating arrays:\n```python\nimport numpy as np\n\n# From lists\narr1 = np.array([1, 2, 3, 4, 5])\narr2 = np.array([[1, 2], [3, 4]])\n\n# Using NumPy functions\nzeros = np.zeros((3, 4))  # 3x4 array of zeros\nones = np.ones((2, 3))    # 2x3 array of ones\nrange_arr = np.arange(0, 10, 2)  # [0, 2, 4, 6, 8]\n```\n\n**Array Operations and Mathematical Functions**\n\nNumPy provides a comprehensive set of mathematical functions that operate element-wise on arrays:\n- Basic arithmetic: +, -, *, /, **\n- Trigonometric functions: sin, cos, tan\n- Statistical functions: mean, median, std, var\n- Linear algebra: dot product, matrix multiplication, eigenvalues\n\n**Indexing and Slicing**\n\nNumPy arrays support sophisticated indexing and slicing operations:\n- Basic indexing: arr[0], arr[1:4], arr[:, 1]\n- Boolean indexing: arr[arr > 5]\n- Fancy indexing: arr[[1, 3, 5]]\n\n**Broadcasting**\n\nBroadcasting is NumPy's powerful feature that allows arithmetic operations between arrays of different shapes. The smaller array is 'broadcast' across the larger array so that they have compatible shapes for element-wise operations.\n\nExample:\n```python\narr = np.array([[1, 2, 3], [4, 5, 6]])\nscalar = 10\nresult = arr + scalar  # Adds 10 to every element\n```\n\nNumPy's efficiency and functionality make it indispensable for data science workflows, serving as the foundation for libraries like Pandas, Scikit-learn, and Matplotlib."
+            },
             "quiz": {
               "questions": [
                 {
@@ -278,11 +398,26 @@
         "title": "Strategic Planning",
         "lessons": [
           {
-            "id": "lesson-9",
+"id": "lesson-9",
             "title": "Introduction to Business Strategy",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
             "duration": 45,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Understand what business strategy is and why it's critical for success",
+                "Learn the key components of strategic planning and analysis",
+                "Explore different types of competitive strategies",
+                "Understand how to assess market opportunities and threats"
+              ],
+              "keyPoints": [
+                "Strategy is about making choices to create sustainable competitive advantage",
+                "Environmental analysis helps identify opportunities and threats",
+                "Competitive positioning determines how you compete in the market",
+                "Strategic planning requires both analytical thinking and creative vision"
+              ],
+              "detailedContent": "Business strategy is the comprehensive plan that outlines how an organization will achieve its goals and create sustainable competitive advantage in the marketplace. It involves making fundamental choices about where to compete, how to compete, and what capabilities to develop to win in chosen markets.\n\n**What is Business Strategy?**\n\nAt its core, business strategy is about making choices. Organizations have limited resources and cannot pursue every opportunity or serve every customer. Strategy provides a framework for making decisions about:\n- Which markets to enter or exit\n- What products or services to offer\n- How to differentiate from competitors\n- Where to invest time, money, and talent\n- How to create value for customers and stakeholders\n\nEffective strategy creates a coherent set of choices that reinforce each other and create sustainable competitive advantage. This advantage might come from lower costs, superior products, better customer service, innovative technology, or unique market positioning.\n\n**Strategic Analysis Framework**\n\nSuccessful strategy development requires thorough analysis of three key areas:\n\n**External Environment Analysis** examines factors outside the organization's direct control:\n- Industry structure and competitive dynamics\n- Market trends and customer needs\n- Technological changes and innovations\n- Economic, political, and social factors\n- Regulatory environment and legal considerations\n\n**Internal Capability Analysis** assesses the organization's strengths and weaknesses:\n- Core competencies and unique capabilities\n- Resource availability and constraints\n- Operational efficiency and effectiveness\n- Organizational culture and leadership\n- Financial performance and position\n\n**Competitive Analysis** evaluates the competitive landscape:\n- Direct and indirect competitors\n- Competitive positioning and strategies\n- Market share and growth trends\n- Strengths and weaknesses of key competitors\n- Potential new entrants and substitute products\n\n**Types of Competitive Strategy**\n\nMichael Porter identified three generic strategies for achieving competitive advantage:\n\n1. **Cost Leadership**: Becoming the lowest-cost producer in the industry while maintaining acceptable quality\n2. **Differentiation**: Creating unique value through superior products, services, or customer experience\n3. **Focus Strategy**: Concentrating on a specific market segment with either cost or differentiation advantages\n\n**Strategic Planning Process**\n\nEffective strategic planning typically follows a structured process:\n1. Mission and vision definition\n2. Environmental and competitive analysis\n3. Strategic objective setting\n4. Strategy formulation and evaluation\n5. Implementation planning\n6. Performance monitoring and adjustment\n\nSuccessful strategy requires both analytical rigor and creative thinking. It must be grounded in data and market realities while also envisioning new possibilities and innovative approaches to creating value."
+            },
             "quiz": {
               "questions": [
                 {
@@ -318,11 +453,26 @@
         "title": "React Fundamentals",
         "lessons": [
           {
-            "id": "lesson-10",
+"id": "lesson-10",
             "title": "Components and JSX",
             "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
             "duration": 80,
             "completed": false,
+            "content": {
+              "objectives": [
+                "Understand what React components are and why they're important",
+                "Learn JSX syntax and how it differs from regular JavaScript",
+                "Master the process of creating and composing components",
+                "Explore props and how to pass data between components"
+              ],
+              "keyPoints": [
+                "Components are the building blocks of React applications",
+                "JSX allows you to write HTML-like syntax within JavaScript",
+                "Components can be functional or class-based (functional preferred)",
+                "Props enable data flow from parent to child components"
+              ],
+              "detailedContent": "React revolutionized frontend development by introducing a component-based architecture that makes building complex user interfaces more manageable, reusable, and maintainable. Understanding components and JSX is fundamental to mastering React development.\n\n**What are React Components?**\n\nComponents are independent, reusable pieces of code that return JSX elements describing what should appear on the screen. Think of components as custom HTML elements that you can define and reuse throughout your application. They encapsulate both the structure (HTML) and behavior (JavaScript) of a UI element.\n\nComponents offer several key benefits:\n- **Reusability**: Write once, use anywhere in your application\n- **Maintainability**: Changes to a component automatically update everywhere it's used\n- **Encapsulation**: Each component manages its own state and logic\n- **Composition**: Complex UIs are built by combining simpler components\n\n**JSX: JavaScript XML**\n\nJSX is a syntax extension for JavaScript that allows you to write HTML-like code within your JavaScript files. While it looks like HTML, JSX is actually syntactic sugar that gets compiled to regular JavaScript function calls.\n\nKey JSX features:\n- HTML-like syntax for describing UI structure\n- JavaScript expressions can be embedded using curly braces {}\n- Attributes use camelCase naming (className instead of class)\n- Self-closing tags must end with />\n- Elements must be properly nested and closed\n\nExample JSX:\n```jsx\nconst Welcome = (props) => {\n  return (\n    <div className=\"welcome-container\">\n      <h1>Hello, {props.name}!</h1>\n      <p>Welcome to our application.</p>\n    </div>\n  );\n};\n```\n\n**Functional vs Class Components**\n\nReact supports two types of components:\n\n**Functional Components** (recommended approach):\n- Simple JavaScript functions that return JSX\n- More concise and easier to test\n- Can use React Hooks for state and lifecycle management\n- Better performance optimization\n\n**Class Components** (legacy approach):\n- ES6 classes that extend React.Component\n- Use render() method to return JSX\n- Have built-in state and lifecycle methods\n- More verbose and complex\n\n**Props: Component Communication**\n\nProps (properties) are how data flows between components in React. They allow parent components to pass data and functions to child components, enabling communication and data sharing throughout the application.\n\nProps characteristics:\n- Read-only (immutable) from the child component's perspective\n- Can be any JavaScript value: strings, numbers, objects, arrays, functions\n- Enable component reusability with different data\n- Follow a unidirectional data flow pattern\n\nExample:\n```jsx\n// Parent component\nconst App = () => {\n  return (\n    <div>\n      <Welcome name=\"John\" age={25} />\n      <Welcome name=\"Sarah\" age={30} />\n    </div>\n  );\n};\n\n// Child component\nconst Welcome = (props) => {\n  return (\n    <div>\n      <h2>Hello, {props.name}!</h2>\n      <p>You are {props.age} years old.</p>\n    </div>\n  );\n};\n```\n\n**Component Composition**\n\nReact's component model encourages composition over inheritance. Complex UIs are built by combining smaller, focused components, each responsible for a specific piece of functionality. This approach leads to more maintainable and testable code.\n\nMastering components and JSX is essential for React development, as they form the foundation for everything else you'll learn about React, including state management, event handling, and advanced patterns."
+            },
             "quiz": {
               "questions": [
                 {

@@ -21,7 +21,7 @@ const LessonContentArea = ({
 }) => {
     return (
         <div className="flex-1 overflow-y-auto">
-            <div className="p-8">
+<div className="p-8">
                 {/* Lesson Header */}
                 <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
@@ -42,6 +42,65 @@ const LessonContentArea = ({
                         {currentLesson.quiz ? ' Quiz included' : ' No quiz'}
                     </p>
                 </div>
+
+                {/* Lesson Content */}
+                {currentLesson.content && (
+                    <div className="mb-8 bg-gray-50 rounded-lg p-6">
+                        <h2 className="text-xl font-heading font-semibold text-gray-900 mb-6">
+                            Lesson Content
+                        </h2>
+                        
+                        {/* Learning Objectives */}
+                        {currentLesson.content.objectives && (
+                            <div className="mb-6">
+                                <h3 className="text-lg font-medium text-gray-800 mb-3">
+                                    Learning Objectives
+                                </h3>
+                                <ul className="space-y-2">
+                                    {currentLesson.content.objectives.map((objective, index) => (
+                                        <li key={index} className="flex items-start space-x-2">
+                                            <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+                                            <span className="text-gray-700">{objective}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Key Points */}
+                        {currentLesson.content.keyPoints && (
+                            <div className="mb-6">
+                                <h3 className="text-lg font-medium text-gray-800 mb-3">
+                                    Key Points
+                                </h3>
+                                <ul className="space-y-2">
+                                    {currentLesson.content.keyPoints.map((point, index) => (
+                                        <li key={index} className="flex items-start space-x-2">
+                                            <span className="inline-block w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></span>
+                                            <span className="text-gray-700">{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Detailed Content */}
+                        {currentLesson.content.detailedContent && (
+                            <div>
+                                <h3 className="text-lg font-medium text-gray-800 mb-3">
+                                    Detailed Explanation
+                                </h3>
+                                <div className="prose prose-gray max-w-none">
+                                    {currentLesson.content.detailedContent.split('\n\n').map((paragraph, index) => (
+                                        <p key={index} className="text-gray-700 leading-relaxed mb-4">
+                                            {paragraph}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 {/* Video or Quiz Content */}
                 {showQuiz && currentLesson.quiz ? (
