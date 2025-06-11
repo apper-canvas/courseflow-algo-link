@@ -1,0 +1,346 @@
+[
+  {
+    "id": "course-1",
+    "title": "JavaScript Fundamentals for Beginners",
+    "description": "Learn the core concepts of JavaScript programming from scratch. This comprehensive course covers variables, functions, objects, arrays, and modern ES6+ features. Perfect for beginners who want to start their programming journey with a solid foundation in JavaScript.",
+    "instructor": "Sarah Johnson",
+    "thumbnail": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
+    "duration": 480,
+    "difficulty": "beginner",
+    "category": "programming",
+    "modules": [
+      {
+        "id": "module-1",
+        "title": "Getting Started with JavaScript",
+        "lessons": [
+          {
+            "id": "lesson-1",
+            "title": "Introduction to JavaScript",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            "duration": 45,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "What is JavaScript primarily used for?",
+                  "options": [
+                    "Styling web pages",
+                    "Making web pages interactive",
+                    "Database management",
+                    "Server configuration"
+                  ],
+                  "correctAnswer": 1
+                },
+                {
+                  "question": "Which of the following is a JavaScript data type?",
+                  "options": [
+                    "String",
+                    "Number",
+                    "Boolean",
+                    "All of the above"
+                  ],
+                  "correctAnswer": 3
+                }
+              ],
+              "passingScore": 70
+            }
+          },
+          {
+            "id": "lesson-2",
+            "title": "Variables and Data Types",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+            "duration": 60,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "Which keyword is used to declare a variable in modern JavaScript?",
+                  "options": [
+                    "var",
+                    "let",
+                    "const",
+                    "Both let and const"
+                  ],
+                  "correctAnswer": 3
+                }
+              ],
+              "passingScore": 70
+            }
+          }
+        ]
+      },
+      {
+        "id": "module-2",
+        "title": "Functions and Control Flow",
+        "lessons": [
+          {
+            "id": "lesson-3",
+            "title": "Functions in JavaScript",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            "duration": 75,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "How do you define a function in JavaScript?",
+                  "options": [
+                    "function myFunction() {}",
+                    "def myFunction() {}",
+                    "function = myFunction() {}",
+                    "myFunction() = function {}"
+                  ],
+                  "correctAnswer": 0
+                }
+              ],
+              "passingScore": 70
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-2",
+    "title": "UI/UX Design Principles",
+    "description": "Master the art of creating beautiful and functional user interfaces. Learn design principles, color theory, typography, and user experience best practices. This course includes hands-on projects using Figma and real-world design challenges.",
+    "instructor": "Alex Chen",
+    "thumbnail": "https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=300&fit=crop",
+    "duration": 360,
+    "difficulty": "intermediate",
+    "category": "design",
+    "modules": [
+      {
+        "id": "module-3",
+        "title": "Design Fundamentals",
+        "lessons": [
+          {
+            "id": "lesson-4",
+            "title": "Introduction to UI/UX Design",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            "duration": 50,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "What does UX stand for?",
+                  "options": [
+                    "User Experience",
+                    "User Extension",
+                    "Universal Experience",
+                    "User Express"
+                  ],
+                  "correctAnswer": 0
+                }
+              ],
+              "passingScore": 70
+            }
+          },
+          {
+            "id": "lesson-5",
+            "title": "Color Theory and Typography",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+            "duration": 65,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "What are complementary colors?",
+                  "options": [
+                    "Colors next to each other on the color wheel",
+                    "Colors opposite each other on the color wheel",
+                    "Colors that are the same hue",
+                    "Colors that are neutral"
+                  ],
+                  "correctAnswer": 1
+                }
+              ],
+              "passingScore": 70
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-3",
+    "title": "Digital Marketing Strategy",
+    "description": "Learn how to create and execute successful digital marketing campaigns. This course covers social media marketing, content strategy, SEO, email marketing, and analytics. Perfect for entrepreneurs and marketing professionals.",
+    "instructor": "Maria Rodriguez",
+    "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+    "duration": 420,
+    "difficulty": "intermediate",
+    "category": "marketing",
+    "modules": [
+      {
+        "id": "module-4",
+        "title": "Marketing Fundamentals",
+        "lessons": [
+          {
+            "id": "lesson-6",
+            "title": "Digital Marketing Overview",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            "duration": 55,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "What is the main goal of digital marketing?",
+                  "options": [
+                    "Increase website traffic",
+                    "Generate leads and sales",
+                    "Build brand awareness",
+                    "All of the above"
+                  ],
+                  "correctAnswer": 3
+                }
+              ],
+              "passingScore": 70
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-4",
+    "title": "Python for Data Science",
+    "description": "Dive into the world of data science with Python. Learn NumPy, Pandas, Matplotlib, and Scikit-learn. This comprehensive course covers data manipulation, visualization, and machine learning basics with real-world datasets.",
+    "instructor": "Dr. James Wilson",
+    "thumbnail": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop",
+    "duration": 600,
+    "difficulty": "advanced",
+    "category": "data-science",
+    "modules": [
+      {
+        "id": "module-5",
+        "title": "Python Basics for Data Science",
+        "lessons": [
+          {
+            "id": "lesson-7",
+            "title": "Python Environment Setup",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+            "duration": 40,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "Which library is primarily used for data manipulation in Python?",
+                  "options": [
+                    "NumPy",
+                    "Pandas",
+                    "Matplotlib",
+                    "Scikit-learn"
+                  ],
+                  "correctAnswer": 1
+                }
+              ],
+              "passingScore": 70
+            }
+          },
+          {
+            "id": "lesson-8",
+            "title": "Introduction to NumPy",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+            "duration": 70,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "What does NumPy stand for?",
+                  "options": [
+                    "Numerical Python",
+                    "Number Python",
+                    "New Python",
+                    "Numeric Python"
+                  ],
+                  "correctAnswer": 0
+                }
+              ],
+              "passingScore": 70
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-5",
+    "title": "Business Strategy Fundamentals",
+    "description": "Learn the essential principles of business strategy and planning. This course covers market analysis, competitive strategy, financial planning, and strategic decision-making. Ideal for entrepreneurs and business professionals.",
+    "instructor": "Robert Thompson",
+    "thumbnail": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+    "duration": 300,
+    "difficulty": "beginner",
+    "category": "business",
+    "modules": [
+      {
+        "id": "module-6",
+        "title": "Strategic Planning",
+        "lessons": [
+          {
+            "id": "lesson-9",
+            "title": "Introduction to Business Strategy",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+            "duration": 45,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "What is the primary purpose of a business strategy?",
+                  "options": [
+                    "To increase profits",
+                    "To gain competitive advantage",
+                    "To expand market share",
+                    "All of the above"
+                  ],
+                  "correctAnswer": 3
+                }
+              ],
+              "passingScore": 70
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "course-6",
+    "title": "React Development Masterclass",
+    "description": "Master React development with this comprehensive course. Learn components, hooks, state management, routing, and testing. Build modern web applications with React, Redux, and other popular libraries in the React ecosystem.",
+    "instructor": "Emily Davis",
+    "thumbnail": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
+    "duration": 540,
+    "difficulty": "advanced",
+    "category": "programming",
+    "modules": [
+      {
+        "id": "module-7",
+        "title": "React Fundamentals",
+        "lessons": [
+          {
+            "id": "lesson-10",
+            "title": "Components and JSX",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+            "duration": 80,
+            "completed": false,
+            "quiz": {
+              "questions": [
+                {
+                  "question": "What is JSX?",
+                  "options": [
+                    "JavaScript XML",
+                    "Java Script Extension",
+                    "JavaScript Syntax",
+                    "Just Simple XML"
+                  ],
+                  "correctAnswer": 0
+                }
+              ],
+              "passingScore": 70
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
