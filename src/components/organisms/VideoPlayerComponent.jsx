@@ -3,15 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ApperIcon from '@/components/ApperIcon';
 import ProgressBar from '@/components/molecules/ProgressBar';
 import Button from '@/components/atoms/Button';
+import NotesPanel from '@/components/organisms/NotesPanel';
 
 const VideoPlayerComponent = ({ videoUrl, onProgress, onComplete, initialProgress = 0 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [showNotesPanel, setShowNotesPanel] = useState(false);
   const videoRef = useRef(null);
   const progressRef = useRef(null);
   const controlsTimeoutRef = useRef(null);
@@ -79,8 +81,9 @@ const VideoPlayerComponent = ({ videoUrl, onProgress, onComplete, initialProgres
   }, [isPlaying, showControls]);
 
 
-  const togglePlay = () => {
+const togglePlay = () => {
     const video = videoRef.current;
+    if (!video) return;
     if (video.paused) {
       video.play();
     } else {
@@ -88,7 +91,8 @@ const VideoPlayerComponent = ({ videoUrl, onProgress, onComplete, initialProgres
     }
   };
 
-  const handleProgressClick = (e) => {
+const handleProgressClick = (e) => {
+    if (!progressRef.current || !videoRef.current) return;
     const rect = progressRef.current.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const width = rect.width;
@@ -98,21 +102,27 @@ const VideoPlayerComponent = ({ videoUrl, onProgress, onComplete, initialProgres
     videoRef.current.currentTime = newTime;
   };
 
-  const toggleMute = () => {
+const toggleMute = () => {
     const video = videoRef.current;
+    if (!video) return;
     video.muted = !video.muted;
     setIsMuted(video.muted);
   };
 
-  const handleVolumeChange = (e) => {
+const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    videoRef.current.volume = newVolume;
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume;
+    }
     setIsMuted(newVolume === 0);
   };
 
-  const toggleFullscreen = () => {
+const toggleFullscreen = () => {
+    if (!videoRef.current) return;
     const videoContainer = videoRef.current.parentElement; // Assuming parent is the container
+    if (!videoContainer) return;
+    
     if (!document.fullscreenElement) {
       if (videoContainer.requestFullscreen) {
         videoContainer.requestFullscreen();
@@ -150,99 +160,121 @@ const VideoPlayerComponent = ({ videoUrl, onProgress, onComplete, initialProgres
       controlsTimeoutRef.current = setTimeout(() => {
         setShowControls(false);
       }, 3000);
-    }
+}
   };
 
   return (
-    <div 
-      className="relative bg-black rounded-lg overflow-hidden group"
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => { if (isPlaying) setShowControls(false); }}
-      onMouseMove={handleMouseMove}
-    >
-      <video
-        ref={videoRef}
-        src={videoUrl}
-        className="w-full h-full"
-        onClick={togglePlay}
-        onDoubleClick={toggleFullscreen}
-      />
-      
-      <AnimatePresence>
-        {showControls && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"
-          >
-            {/* Play/Pause Button */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-auto">
-              <Button
-                onClick={togglePlay}
-                className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"
-                aria-label={isPlaying ? 'Pause' : 'Play'}
-                icon={<ApperIcon name={isPlaying ? 'Pause' : 'Play'} size={24} className="text-white ml-1" />}
-              />
-            </div>
-
-            {/* Controls Bar */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-auto">
-              {/* Progress Bar */}
-              <div
-                ref={progressRef}
-                className="w-full h-2 bg-white/20 rounded-full cursor-pointer mb-4 overflow-hidden"
-                onClick={handleProgressClick}
-              >
-                <ProgressBar progress={progressPercentage} barClassName="bg-primary" />
-              </div>
-
-              {/* Controls */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <Button
-                    onClick={togglePlay}
-                    className="text-white hover:text-primary p-0"
-                    aria-label={isPlaying ? 'Pause video' : 'Play video'}
-                    icon={<ApperIcon name={isPlaying ? 'Pause' : 'Play'} size={20} />}
-                  />
-                  
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      onClick={toggleMute}
-                      className="text-white hover:text-primary p-0"
-                      aria-label={isMuted ? 'Unmute' : 'Mute'}
-                      icon={<ApperIcon name={isMuted ? 'VolumeX' : 'Volume2'} size={20} />}
-                    />
-                    <input
-                      type="range"
-                      min="0"
-                      max="1"
-                      step="0.1"
-                      value={isMuted ? 0 : volume}
-                      onChange={handleVolumeChange}
-                      className="w-20 h-1 bg-white/20 rounded-full appearance-none slider"
-                    />
-                  </div>
-                  
-                  <span className="text-white text-sm">
-                    {formatTime(currentTime)} / {formatTime(duration)}
-                  </span>
-                </div>
-
+    <div className="flex">
+      <div 
+        className={`relative bg-black rounded-lg overflow-hidden group transition-all duration-300 ${showNotesPanel ? 'mr-4' : ''}`}
+        onMouseEnter={() => setShowControls(true)}
+        onMouseLeave={() => { if (isPlaying) setShowControls(false); }}
+        onMouseMove={handleMouseMove}
+      >
+        <video
+          ref={videoRef}
+          src={videoUrl}
+          className="w-full h-full"
+          onClick={togglePlay}
+          onDoubleClick={toggleFullscreen}
+        />
+        
+        <AnimatePresence>
+          {showControls && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"
+            >
+              {/* Play/Pause Button */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-auto">
                 <Button
-                  onClick={toggleFullscreen}
-                  className="text-white hover:text-primary p-0"
-                  aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-                  icon={<ApperIcon name={isFullscreen ? 'Minimize' : 'Maximize'} size={20} />}
+                  onClick={togglePlay}
+                  className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"
+                  aria-label={isPlaying ? 'Pause' : 'Play'}
+                  icon={<ApperIcon name={isPlaying ? 'Pause' : 'Play'} size={24} className="text-white ml-1" />}
                 />
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+              {/* Controls Bar */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-auto">
+                {/* Progress Bar */}
+                <div
+                  ref={progressRef}
+                  className="w-full h-2 bg-white/20 rounded-full cursor-pointer mb-4 overflow-hidden"
+                  onClick={handleProgressClick}
+                >
+                  <ProgressBar progress={progressPercentage} barClassName="bg-primary" />
+                </div>
+
+                {/* Controls */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <Button
+                      onClick={togglePlay}
+                      className="text-white hover:text-primary p-0"
+                      aria-label={isPlaying ? 'Pause video' : 'Play video'}
+                      icon={<ApperIcon name={isPlaying ? 'Pause' : 'Play'} size={20} />}
+                    />
+                    
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        onClick={toggleMute}
+                        className="text-white hover:text-primary p-0"
+                        aria-label={isMuted ? 'Unmute' : 'Mute'}
+                        icon={<ApperIcon name={isMuted ? 'VolumeX' : 'Volume2'} size={20} />}
+                      />
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.1"
+                        value={isMuted ? 0 : volume}
+                        onChange={handleVolumeChange}
+                        className="w-20 h-1 bg-white/20 rounded-full appearance-none slider"
+                      />
+                    </div>
+                    
+                    <span className="text-white text-sm">
+                      {formatTime(currentTime)} / {formatTime(duration)}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <Button
+                      onClick={() => setShowNotesPanel(!showNotesPanel)}
+                      className={`text-white hover:text-primary p-0 ${showNotesPanel ? 'text-primary' : ''}`}
+                      aria-label="Toggle notes panel"
+                      icon={<ApperIcon name="FileText" size={20} />}
+                    />
+                    <Button
+                      onClick={toggleFullscreen}
+                      className="text-white hover:text-primary p-0"
+                      aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                      icon={<ApperIcon name={isFullscreen ? 'Minimize' : 'Maximize'} size={20} />}
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      
+      <NotesPanel
+        isOpen={showNotesPanel}
+        onClose={() => setShowNotesPanel(false)}
+        videoId={videoUrl}
+        currentTime={currentTime}
+        onSeekTo={(timestamp) => {
+          if (videoRef.current) {
+            videoRef.current.currentTime = timestamp;
+            setCurrentTime(timestamp);
+          }
+        }}
+      />
     </div>
-  );
 }
 
 export default VideoPlayerComponent;
