@@ -1,4 +1,4 @@
-import { notesData } from '@/mockData/notes.json';
+import notesData from '@/services/mockData/notes.json';
 
 // Mock delay to simulate API call
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
