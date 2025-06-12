@@ -135,7 +135,7 @@ class NotesService {
     }
   }
 
-  async delete(id) {
+async delete(id) {
     try {
       if (!id) {
         throw new Error('Note ID is required');
@@ -157,3 +157,7 @@ class NotesService {
     }
   }
 }
+
+// Create and export default instance
+const notesService = new NotesService();
+export default notesService;
