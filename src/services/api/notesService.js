@@ -1,4 +1,4 @@
-import notesData from '@/services/mockData/notes.json';
+import notesData from '@/services/mockData/notes.json' assert { type: 'json' };
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
