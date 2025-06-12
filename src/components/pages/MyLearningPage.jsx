@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Button from '@/components/atoms/Button';
 import MyCourseProgressCard from '@/components/organisms/MyCourseProgressCard';
 import ContentLoader from '@/components/organisms/ContentLoader';
 import ErrorDisplay from '@/components/organisms/ErrorDisplay';
